@@ -8,8 +8,6 @@ import { LoaderUtils } from './LoaderUtils.js';
 
 import { unzipSync, strFromU8 } from './libs/fflate.module.js';
 
-import { FBXLoader } from '../jsm/loaders/FBXLoader.js';
-
 function Loader( editor ) {
 
 	const scope = this;
@@ -248,6 +246,7 @@ function Loader( editor ) {
 
 					const contents = event.target.result;
 
+					const { FBXLoader } = await import( '../jsm/loaders/FBXLoader.js' );
 
 					const loader = new FBXLoader( manager );
 					const object = loader.parse( contents );

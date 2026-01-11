@@ -1,4 +1,4 @@
-import { WebGLPathTracer } from 'three-gpu-pathtracer';
+import { WebGLPathTracer } from '../index.module';
 
 function ViewportPathtracer( renderer ) {
 

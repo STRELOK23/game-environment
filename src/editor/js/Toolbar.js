@@ -18,9 +18,7 @@ function Toolbar( editor ) {
 	translate.dom.className = 'Button selected';
 	translate.dom.appendChild( translateIcon );
 	translate.onClick( function () {
-
 		signals.transformModeChanged.dispatch( 'translate' );
-
 	} );
 	container.add( translate );
 
@@ -72,6 +70,7 @@ function Toolbar( editor ) {
 			case 'translate': translate.dom.classList.add( 'selected' ); break;
 			case 'rotate': rotate.dom.classList.add( 'selected' ); break;
 			case 'scale': scale.dom.classList.add( 'selected' ); break;
+			default: break;
 
 		}
 

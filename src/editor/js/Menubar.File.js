@@ -1,4 +1,5 @@
 import { UIPanel, UIRow, UIHorizontalRule } from './libs/ui.js';
+import * as THREE from 'three';
 
 function MenubarFile( editor ) {
 
@@ -46,7 +47,7 @@ function MenubarFile( editor ) {
 	let option = new UIRow().setTextContent( strings.getKey( 'menubar/file/new/empty' ) ).setClass( 'option' );
 	option.onClick( function () {
 
-		if ( confirm( strings.getKey( 'prompt/file/open' ) ) ) {
+		if ( window.confirm( strings.getKey( 'prompt/file/open' ) ) ) {
 
 			editor.clear();
 
@@ -82,7 +83,7 @@ function MenubarFile( editor ) {
 			option.setTextContent( strings.getKey( example.title ) );
 			option.onClick( function () {
 
-				if ( confirm( strings.getKey( 'prompt/file/open' ) ) ) {
+				if ( window.confirm( strings.getKey( 'prompt/file/open' ) ) ) {
 
 					loader.load( 'examples/' + example.file, function ( text ) {
 
@@ -152,7 +153,7 @@ function MenubarFile( editor ) {
 		.setTextContent( strings.getKey( 'menubar/file/open' ) )
 		.onClick( function () {
 
-			if ( confirm( strings.getKey( 'prompt/file/open' ) ) ) {
+			if ( window.confirm( strings.getKey( 'prompt/file/open' ) ) ) {
 
 				openProjectInput.click();
 
@@ -451,7 +452,7 @@ function MenubarFile( editor ) {
 
 		scene.traverse( function ( object ) {
 
-			animations.push( ... object.animations );
+			animations.push( ...object.animations );
 
 		} );
 

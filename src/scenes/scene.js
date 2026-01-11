@@ -12,7 +12,6 @@ const pixelizationLevel = 4;
 // init
 const Scene = () => {
     const width = window.innerWidth, height = window.innerHeight;
-
     // камера, сцена, рендерер
     const camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 10);
     camera.position.z = 1;
@@ -25,6 +24,11 @@ const Scene = () => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
     renderer.setAnimationLoop(animate);
+
+    
+    // добавляем хелпер с размерной сеткой
+    const gridHelper = new THREE.GridHelper();
+    scene.add(gridHelper);
 
     // управление камерами
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -43,9 +47,35 @@ const Scene = () => {
 
     // Load Pliers OBJ and apply a proper material + optional texture
 
-    addOBJModelToScene(scene, 'VHSPlayer');
-    addMLTModelToScene(scene, 'Container', undefined, undefined, 0.003);
-    addMLTModelToScene(scene, 'Container', {x: -1, y: 0, z: 0}, undefined, 0.003);
+    addOBJModelToScene(scene, 'VHSPlayer', {x: -2, y: 0, z: 0});
+    // addMLTModelToScene(scene, 'Container', undefined, undefined, 0.003);
+    // addMLTModelToScene(scene, 'Container', {x: -1, y: 0, z: 0}, undefined, 0.003);
+    
+    addOBJModelToScene(scene, 'verstak', {x: 0, y: 0, z: 0}, undefined, 0.5)
+    
+    // addOBJModelToScene(scene, 'Cube', {x: 0, y: 0, z: 0}).then((object) => {
+    //     // куб 1метр
+    //     console.log("Cube loaded", object);
+    // });
+    // тестовая загрузка множества моделей
+    // for (let i = -10; i <= 10; i++) {
+    //     for (let j = -10; j <= 10; j++) {
+    //         addMLTModelToScene(scene, 'Container', {x: i * 0.2, y: 0, z: j * 0.2}, undefined, 0.003);
+    //     }
+    // }
+
+    // добавляем полупрозрачный конус
+    const coneGeometry = new THREE.ConeGeometry(0.5, 1, 32);
+    const coneMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: 0.1 });
+    // раскрашиваем конус в градиент
+    const gradient = new THREE.Color(0x00ff00);
+    coneMaterial.color = gradient;
+
+    const cone = new THREE.Mesh(coneGeometry, coneMaterial);
+    // делаем отображение поверхности конуса с обеих сторон
+    coneMaterial.side = THREE.DoubleSide;
+    cone.position.set(2, 0, 0);
+    scene.add(cone);
 
     console.log("Scene loaded", scene);
 

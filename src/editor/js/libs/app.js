@@ -1,3 +1,6 @@
+import * as THREE from 'three';
+import { EffectComposer, RenderPixelatedPass } from 'three/examples/jsm/Addons.js';
+
 var APP = {
 
 	Player: function () {
@@ -18,11 +21,6 @@ var APP = {
 
 		this.width = 500;
 		this.height = 500;
-
-
-		// добавление обработки пикселизации
-		// var pixelizationLevel = 4;
-		// var composer = new EffectComposer(renderer);
 
 		this.load = function (json) {
 
@@ -141,6 +139,9 @@ var APP = {
 
 		};
 
+		this.setPixelization = function () {
+		}
+
 		function dispatch(array, event) {
 
 			for (var i = 0, l = array.length; i < l; i++) {
@@ -152,6 +153,7 @@ var APP = {
 		}
 
 		var time, startTime, prevTime;
+
 
 		function animate() {
 

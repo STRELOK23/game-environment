@@ -6,6 +6,7 @@ import { History as _History } from './History.js';
 import { Strings } from './Strings.js';
 import { Storage as _Storage } from './Storage.js';
 import { Selector } from './Selector.js';
+import Signals from './libs/signals.min.js';
 
 var _DEFAULT_CAMERA = new THREE.PerspectiveCamera( 50, 1, 0.01, 1000 );
 _DEFAULT_CAMERA.name = 'Camera';
@@ -13,28 +14,24 @@ _DEFAULT_CAMERA.position.set( 0, 5, 10 );
 _DEFAULT_CAMERA.lookAt( new THREE.Vector3() );
 
 function Editor() {
-
-	const Signal = signals.Signal; // eslint-disable-line no-undef
+    Signals(window);
+	const Signal = signals.Signal;
 
 	this.signals = {
 
 		// script
-
 		editScript: new Signal(),
 
 		// player
-
 		startPlayer: new Signal(),
 		stopPlayer: new Signal(),
 
 		// xr
-
 		enterXR: new Signal(),
 		offerXR: new Signal(),
 		leaveXR: new Signal(),
 
 		// notifications
-
 		editorCleared: new Signal(),
 
 		savingStarted: new Signal(),

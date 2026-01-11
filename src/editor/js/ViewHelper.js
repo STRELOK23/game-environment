@@ -368,7 +368,7 @@ class ViewHelper extends Object3D {
 
 		}
 
-		function useOffscreenCanvas() {
+		function isUseOffscreenCanvas() {
 
 			let result = false;
 
@@ -392,7 +392,7 @@ class ViewHelper extends Object3D {
 
 			let canvas;
 
-			if ( useOffscreenCanvas() ) {
+			if ( isUseOffscreenCanvas() ) {
 
 				canvas = new OffscreenCanvas( width, height );
 
